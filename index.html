@@ -21,9 +21,9 @@
    The page sorts terms A to Z by itself.
    Keep the comma after each closing curly bracket.
    ========================================================================== */
-const SITE_TITLE    = "Logistics and Supply Chain Glossary";
-const SITE_SUBTITLE = "helou (♡ˊ͈ ꒳ ˋ͈) welcome to the ultimate logistics glossary of sylvia";
-const CATEGORIES    = ["Transportation", "Warehouse", "Manufacture", "Production planning"];
+const SITE_TITLE    = "sylvia's supply chain glossary ⊹ ࣪ ˖";
+const SITE_SUBTITLE = "helou ^_^ welcome to my amazing dictionary, this will be updated occasionally!";
+const CATEGORIES    = ["Production planning", "Procurement", "Transportation", "Warehouse", "Manufacture", "Uncategorized"];
 
 const TERMS = [
   { term: "3PL",
@@ -179,6 +179,155 @@ const TERMS = [
     definition: "Small changes in customer demand grow into bigger and bigger swings in orders further up the supply chain.",
     example: "A 5% rise in store sales leads the wholesaler to order 15% more and the factory to plan 30% more.",
     category: "Production planning" },
+
+   { term: "RFQ",
+  full: "Request for Quotation",
+  vi: "Yêu cầu báo giá",
+  definition: "A formal document sent to suppliers requesting prices, costs, and commercial terms for specified goods or services.",
+  example: "A company sends an RFQ to three suppliers to compare prices for 500 tonnes of raw cotton.",
+  category: "Procurement" },
+
+{ term: "RFI",
+  full: "Request for Information",
+  vi: "Yêu cầu cung cấp thông tin",
+  definition: "A preliminary document used to collect general information about potential suppliers, their capabilities, products, and services before making purchasing decisions.",
+  example: "A manufacturer sends an RFI to several suppliers to learn about their production capacity and available materials.",
+  category: "Procurement" },
+
+{ term: "RFP",
+  full: "Request for Proposal",
+  vi: "Yêu cầu đề xuất",
+  definition: "A formal document inviting suppliers to submit detailed proposals explaining how they would meet a company's requirements, including pricing, solutions, and implementation plans.",
+  example: "A company issues an RFP to logistics providers to find a suitable partner for managing its international distribution.",
+  category: "Procurement" },
+
+{ term: "TEU",
+  full: "Twenty-foot Equivalent Unit",
+  vi: "Đơn vị tương đương container 20 feet",
+  definition: "A standard unit of measurement representing the capacity of one 20-foot shipping container, commonly used to measure container ship capacity and port throughput.",
+  example: "A vessel with a capacity of 10,000 TEU can carry approximately 10,000 standard 20-foot containers.",
+  category: "Transportation" },
+
+{ term: "1PL",
+  full: "First-Party Logistics",
+  vi: "Logistics bên thứ nhất",
+  definition: "A logistics model in which a company manages and performs its own logistics activities using its internal resources, without outsourcing to a third-party logistics provider.",
+  example: "A manufacturer uses its own trucks and employees to transport finished products directly to customers.",
+  category: "Transportation" },
+
+{ term: "2PL",
+  full: "Second-Party Logistics",
+  vi: "Logistics bên thứ hai",
+  definition: "A logistics model in which a company outsources a specific logistics service, such as transportation or warehousing, to an external provider that owns the relevant assets.",
+  example: "A manufacturer hires a shipping company to transport its goods from Vietnam to the United States.",
+  category: "Transportation" },
+
+{ term: "3PL",
+  full: "Third-Party Logistics",
+  vi: "Logistics bên thứ ba",
+  definition: "A logistics model in which a company outsources multiple logistics activities, such as transportation, warehousing, inventory management, and order fulfilment, to an external logistics provider.",
+  example: "A clothing retailer hires a 3PL provider to store inventory, process orders, and deliver products to customers.",
+  category: "Warehouse" },
+
+/* INCOTERMS 2020 */
+
+{ term: "EXW",
+  full: "Ex Works",
+  vi: "Giao hàng tại xưởng",
+  definition: "The seller makes the goods available at an agreed location, usually their premises. The buyer assumes almost all costs and risks from that point, including loading and export clearance.",
+  example: "A Vietnamese manufacturer makes garments available at its factory in Ho Chi Minh City, and the buyer arranges collection and transportation.",
+  category: "Transportation" },
+
+{ term: "FCA",
+  full: "Free Carrier",
+  vi: "Giao cho người chuyên chở",
+  definition: "The seller delivers the goods to the buyer's nominated carrier at an agreed location and completes export clearance. Risk transfers when delivery takes place according to the agreed location.",
+  example: "A Vietnamese exporter delivers packaged garments to a carrier at a designated warehouse in Ho Chi Minh City.",
+  category: "Transportation" },
+
+{ term: "CPT",
+  full: "Carriage Paid To",
+  vi: "Cước phí trả tới",
+  definition: "The seller pays transportation costs to the agreed destination, but risk transfers to the buyer when the goods are handed over to the first carrier.",
+  example: "A Vietnamese exporter pays the freight for shipping textiles to a warehouse in Germany, although the buyer assumes risk once the goods are handed to the first carrier.",
+  category: "Transportation" },
+
+{ term: "CIP",
+  full: "Carriage and Insurance Paid To",
+  vi: "Cước phí và bảo hiểm trả tới",
+  definition: "The seller pays transportation costs and obtains cargo insurance to the agreed destination. Risk transfers when the goods are handed over to the first carrier.",
+  example: "A Vietnamese exporter arranges transportation and insurance for machinery being shipped to a buyer in France.",
+  category: "Transportation" },
+
+{ term: "DAP",
+  full: "Delivered at Place",
+  vi: "Giao hàng tại nơi đến",
+  definition: "The seller bears the costs and risks of transporting goods to the agreed destination, where they are made available to the buyer on the arriving vehicle, ready for unloading. The buyer handles import clearance.",
+  example: "A Vietnamese seller delivers furniture to the buyer's warehouse in Japan, where the buyer is responsible for unloading and import clearance.",
+  category: "Transportation" },
+
+{ term: "DPU",
+  full: "Delivered at Place Unloaded",
+  vi: "Giao hàng tại địa điểm đã dỡ xuống",
+  definition: "The seller bears the costs and risks of transporting and unloading goods at the agreed destination. The buyer handles import clearance.",
+  example: "A Vietnamese exporter arranges transportation and unloading of industrial equipment at the buyer's warehouse in South Korea.",
+  category: "Transportation" },
+
+{ term: "DDP",
+  full: "Delivered Duty Paid",
+  vi: "Giao hàng đã nộp thuế",
+  definition: "The seller bears almost all costs and risks of delivering goods to the agreed destination, including export and import clearance, duties, and taxes. The buyer is responsible for unloading.",
+  example: "A Vietnamese seller delivers products to a customer in Australia and pays the applicable import duties and taxes.",
+  category: "Transportation" },
+
+{ term: "FAS",
+  full: "Free Alongside Ship",
+  vi: "Giao dọc mạn tàu",
+  definition: "The seller delivers goods alongside the vessel nominated by the buyer at the agreed port of shipment and completes export clearance. Risk transfers when the goods are placed alongside the vessel.",
+  example: "A Vietnamese exporter delivers bulk rice alongside a vessel at Cat Lai Port for the buyer to load onto the ship.",
+  category: "Transportation" },
+
+{ term: "FOB",
+  full: "Free On Board",
+  vi: "Giao hàng lên tàu",
+  definition: "The seller delivers goods on board the vessel nominated by the buyer at the agreed port of shipment and completes export clearance. Risk transfers when the goods are on board the vessel.",
+  example: "A Vietnamese garment exporter loads a shipment onto the buyer's nominated vessel at Cat Lai Port, after which the buyer assumes the risk.",
+  category: "Transportation" },
+
+{ term: "CFR",
+  full: "Cost and Freight",
+  vi: "Tiền hàng và cước phí",
+  definition: "The seller pays the costs and freight necessary to transport goods to the agreed destination port. However, risk transfers to the buyer once the goods are on board the vessel at the port of shipment.",
+  example: "A Vietnamese exporter pays the ocean freight for shipping rice to Hamburg Port, but the buyer assumes the risk once the goods are loaded onto the vessel in Vietnam.",
+  category: "Transportation" },
+
+{ term: "CIF",
+  full: "Cost, Insurance and Freight",
+  vi: "Tiền hàng, bảo hiểm và cước phí",
+  definition: "The seller pays the costs, ocean freight, and minimum required insurance coverage to transport goods to the agreed destination port. Risk transfers when the goods are on board the vessel at the port of shipment.",
+  example: "A Vietnamese coffee exporter pays for ocean freight and insurance when shipping coffee beans to Rotterdam Port.",
+  category: "Transportation" },
+
+   { term: "VMI",
+  full: "Vendor-Managed Inventory",
+  vi: "Quản lý hàng tồn kho bởi nhà cung cấp",
+  definition: "An inventory management strategy in which the supplier monitors the buyer's inventory levels and takes responsibility for replenishing stock based on agreed inventory targets and demand information.",
+  example: "A textile supplier monitors a garment manufacturer's fabric inventory and automatically replenishes materials when stock falls below the agreed threshold.",
+  category: "Procurement" },
+
+{ term: "QC",
+  full: "Quality Control",
+  vi: "Kiểm soát chất lượng",
+  definition: "A process of inspecting, testing, and evaluating products or production outputs to identify defects and ensure they meet established quality standards and specifications.",
+  example: "A garment manufacturer conducts QC inspections to check stitching, fabric defects, measurements, and overall product quality before shipping orders to customers.",
+  category: "Manufacture" },
+
+{ term: "KPI",
+  full: "Key Performance Indicator",
+  vi: "Chỉ số đo lường hiệu suất chính",
+  definition: "A measurable value used to evaluate how effectively an individual, department, or organization achieves specific operational or strategic objectives.",
+  example: "A warehouse uses order picking accuracy, inventory accuracy, and order fulfilment time as KPIs to evaluate its operational performance.",
+  category: "Uncategorized" },
 
   /* TEMPLATE: copy the 6 lines below, paste them above this comment, fill them in
   { term: "",
