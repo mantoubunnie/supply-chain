@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Course Glossary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap&subset=vietnamese" rel="stylesheet">
+<script>
+/* ==========================================================================
+   EDIT YOUR GLOSSARY HERE
+   --------------------------------------------------------------------------
+   To add a term, copy the TEMPLATE at the bottom of the list, paste it
+   above the template, and fill it in.
+     term        : the word, phrase or abbreviation (required)
+     full        : what it stands for, if it is an abbreviation, otherwise ""
+     vi          : the Vietnamese translation, or ""
+     definition  : the English definition (required)
+     example     : an example, or "" if you don't have one
+     category    : one of the names in CATEGORIES below, spelled the same
+   The page sorts terms A to Z by itself.
+   Keep the comma after each closing curly bracket.
+   ========================================================================== */
+const SITE_TITLE    = "Logistics and Supply Chain Glossary";
+const SITE_SUBTITLE = "helou (♡ˊ͈ ꒳ ˋ͈) welcome to the ultimate logistics glossary of sylvia";
+const CATEGORIES    = ["Transportation", "Warehouse", "Manufacture", "Production planning"];
+
+const TERMS = [
+  { term: "3PL",
+    full: "Third-Party Logistics",
+    vi: "Nhà cung cấp dịch vụ logistics bên thứ ba",
+    definition: "An outside company hired to handle logistics work such as transport, warehousing and order fulfilment.",
+    example: "An online shop pays a logistics company to store its stock, pack orders and deliver them to customers.",
+    category: "Transportation" },
+
+  { term: "FTL",
+    full: "Full Truckload",
+    vi: "Vận chuyển nguyên xe tải",
+    definition: "A shipment that fills a whole truck, or a truck booked for one customer only. Usually cheaper per unit for large volumes.",
+    example: "A furniture factory books a full truck to send 300 sofas to one distribution centre.",
+    category: "Transportation" },
+
+  { term: "LTL",
+    full: "Less Than Truckload",
+    vi: "Vận chuyển hàng lẻ (ghép xe tải)",
+    definition: "A shipment too small to fill a truck, so it shares space with other customers' goods.",
+    example: "Ten pallets from a small supplier travel on the same truck as goods from four other companies.",
+    category: "Transportation" },
+
+  { term: "Incoterms",
+    full: "International Commercial Terms",
+    vi: "Điều kiện thương mại quốc tế",
+    definition: "Standard rules from the International Chamber of Commerce that set who pays for transport, insurance and risk at each stage of an international shipment.",
+    example: "Under FOB (Free On Board), the seller pays to load the goods onto the ship, and the buyer is responsible from that point.",
+    category: "Transportation" },
+
+  { term: "Last-mile delivery",
+    full: "",
+    vi: "Giao hàng chặng cuối",
+    definition: "The final step of delivery, from a local hub to the customer's door. Often the most expensive part of shipping.",
+    example: "A delivery rider bringing a parcel from the local hub to your apartment.",
+    category: "Transportation" },
+
+  { term: "B/L",
+    full: "Bill of Lading",
+    vi: "Vận đơn",
+    definition: "A document issued by the carrier that lists the goods shipped, confirms they were received, and can act as proof of ownership.",
+    example: "An exporter in Ho Chi Minh City receives a bill of lading from the shipping line once the container is loaded.",
+    category: "Transportation" },
+
+  { term: "SKU",
+    full: "Stock Keeping Unit",
+    vi: "Mã đơn vị lưu kho",
+    definition: "A unique code for each distinct product version a business stocks, used to track inventory.",
+    example: "A red T-shirt in size M and the same shirt in size L have different SKUs.",
+    category: "Warehouse" },
+
+  { term: "WMS",
+    full: "Warehouse Management System",
+    vi: "Hệ thống quản lý kho",
+    definition: "Software that tracks stock locations and controls receiving, storing, picking and shipping inside a warehouse.",
+    example: "The WMS tells a worker which shelf to pick an item from and updates stock levels when it leaves.",
+    category: "Warehouse" },
+
+  { term: "FIFO",
+    full: "First In, First Out",
+    vi: "Nhập trước, xuất trước",
+    definition: "A stock rule where the oldest items are shipped or used first.",
+    example: "A supermarket puts older milk at the front of the shelf so it sells before newer stock.",
+    category: "Warehouse" },
+
+  { term: "Cross-docking",
+    full: "",
+    vi: "Trung chuyển hàng không qua lưu kho",
+    definition: "Moving incoming goods straight from receiving to outbound trucks with little or no storage time.",
+    example: "Goods from several suppliers are unloaded, sorted by store and loaded onto delivery trucks within a few hours.",
+    category: "Warehouse" },
+
+  { term: "Picking",
+    full: "",
+    vi: "Lấy hàng (soạn hàng)",
+    definition: "Collecting the items for a customer order from their storage locations in the warehouse.",
+    example: "A worker uses a handheld scanner to collect three items for one online order.",
+    category: "Warehouse" },
+
+  { term: "BOM",
+    full: "Bill of Materials",
+    vi: "Định mức nguyên vật liệu",
+    definition: "A complete list of the parts, materials and quantities needed to make one unit of a product.",
+    example: "The BOM for a bicycle lists one frame, two wheels, one chain, one seat and so on.",
+    category: "Manufacture" },
+
+  { term: "JIT",
+    full: "Just-in-Time",
+    vi: "Sản xuất đúng lúc",
+    definition: "Producing or receiving materials only when they are needed, to keep inventory low.",
+    example: "Toyota receives car seats from its supplier just hours before they are fitted on the assembly line.",
+    category: "Manufacture" },
+
+  { term: "Lean manufacturing",
+    full: "",
+    vi: "Sản xuất tinh gọn",
+    definition: "An approach that improves production by removing waste, such as extra stock, waiting time and defects.",
+    example: "A factory rearranges its machines so parts no longer travel back and forth across the floor.",
+    category: "Manufacture" },
+
+  { term: "OEE",
+    full: "Overall Equipment Effectiveness",
+    vi: "Hiệu suất thiết bị tổng thể",
+    definition: "A measure of how productive a machine is, calculated as availability multiplied by performance multiplied by quality.",
+    example: "A machine with 90% availability, 95% performance and 98% quality has an OEE of about 84%.",
+    category: "Manufacture" },
+
+  { term: "Kaizen",
+    full: "",
+    vi: "Cải tiến liên tục",
+    definition: "A Japanese approach of making small, ongoing improvements, with ideas coming from all employees.",
+    example: "Line workers suggest moving a tool rack closer, saving ten seconds per unit.",
+    category: "Manufacture" },
+
+  { term: "MRP",
+    full: "Material Requirements Planning",
+    vi: "Hoạch định nhu cầu nguyên vật liệu",
+    definition: "A system that uses the production schedule, BOM and stock levels to work out which materials to order and when.",
+    example: "MRP calculates that 2,000 screws must be ordered this week to build next month's 500 chairs.",
+    category: "Production planning" },
+
+  { term: "MPS",
+    full: "Master Production Schedule",
+    vi: "Lịch trình sản xuất tổng thể",
+    definition: "A plan showing how many of each finished product will be made in each time period.",
+    example: "The MPS sets 1,000 phones to be produced in week 1 and 1,200 in week 2.",
+    category: "Production planning" },
+
+  { term: "Lead time",
+    full: "",
+    vi: "Thời gian chờ (thời gian đáp ứng)",
+    definition: "The time between placing an order and receiving it, or between starting and finishing production.",
+    example: "A supplier needs 14 days from receiving the order to delivering the fabric.",
+    category: "Production planning" },
+
+  { term: "Safety stock",
+    full: "",
+    vi: "Tồn kho an toàn",
+    definition: "Extra inventory kept to protect against unexpected demand or late deliveries.",
+    example: "A shop keeps 50 extra units of a best-selling item in case a delivery is delayed.",
+    category: "Production planning" },
+
+  { term: "EOQ",
+    full: "Economic Order Quantity",
+    vi: "Lượng đặt hàng kinh tế",
+    definition: "The order size that keeps the combined cost of ordering and holding stock as low as possible. EOQ = √(2DS ÷ H).",
+    example: "With yearly demand D = 1,000, order cost S = $10 and holding cost H = $2, EOQ = 100 units per order.",
+    category: "Production planning" },
+
+  { term: "Bullwhip effect",
+    full: "",
+    vi: "Hiệu ứng roi da",
+    definition: "Small changes in customer demand grow into bigger and bigger swings in orders further up the supply chain.",
+    example: "A 5% rise in store sales leads the wholesaler to order 15% more and the factory to plan 30% more.",
+    category: "Production planning" },
+
+  /* TEMPLATE: copy the 6 lines below, paste them above this comment, fill them in
+  { term: "",
+    full: "",
+    vi: "",
+    definition: "",
+    example: "",
+    category: "Warehouse" },
+  */
+];
+</script>
+
+<style>
+  :root {
+    --bg: #f6f7fb; --surface: #ffffff; --surface-2: #f0f2f8;
+    --text: #141826; --muted: #5d6478; --border: #e2e5ef; --faint: #c9cedc;
+    --accent: #3d5afe; --accent-soft: #e8ecff; --mark: #ffe58a;
+    --vi: #c2185b; --vi-soft: #fde7ef;
+    --new: #0f9d58; --new-soft: #e3f6ec;
+    --shadow: 0 1px 2px rgba(20,24,38,.04), 0 6px 24px rgba(20,24,38,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e1117; --surface: #161a23; --surface-2: #1d2230;
+      --text: #e8eaf2; --muted: #9aa1b5; --border: #2a3040; --faint: #3a4152;
+      --accent: #7c93ff; --accent-soft: #232b4a; --mark: #6b5a12;
+      --vi: #f48fb1; --vi-soft: #3a1d2a;
+      --new: #4cd38a; --new-soft: #17301f;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 24px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1117; --surface: #161a23; --surface-2: #1d2230;
+    --text: #e8eaf2; --muted: #9aa1b5; --border: #2a3040; --faint: #3a4152;
+    --accent: #7c93ff; --accent-soft: #232b4a; --mark: #6b5a12;
+    --vi: #f48fb1; --vi-soft: #3a1d2a;
+    --new: #4cd38a; --new-soft: #17301f;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 24px rgba(0,0,0,.25);
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.6 Inter, system-ui, sans-serif; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 40px 16px 80px; }
+
+  header { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 28px; }
+  .eyebrow { font: 500 12px/1 "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+  h1 { font-size: clamp(26px, 5vw, 36px); line-height: 1.15; margin: 10px 0 6px; letter-spacing: -.02em; }
+  .subtitle { color: var(--muted); margin: 0; }
+  .theme-btn { flex-shrink: 0; border: 1px solid var(--border); background: var(--surface); color: var(--text); border-radius: 999px; padding: 8px 14px; font: inherit; font-size: 13px; cursor: pointer; }
+
+  .controls { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 12px 0; display: grid; gap: 12px; }
+  .search { display: flex; align-items: center; gap: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 0 14px; box-shadow: var(--shadow); }
+  .search:focus-within { border-color: var(--accent); }
+  .search svg { flex-shrink: 0; color: var(--muted); }
+  .search input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--text); font: inherit; font-size: 16px; padding: 14px 0; }
+  .search kbd { font: 12px "JetBrains Mono", monospace; color: var(--muted); border: 1px solid var(--border); border-radius: 6px; padding: 2px 6px; }
+  .clear { border: 0; background: none; color: var(--muted); cursor: pointer; font-size: 18px; display: none; }
+
+  .row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .chip { border: 1px solid var(--border); background: var(--surface); color: var(--muted); border-radius: 999px; padding: 5px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+  .chip:disabled { color: var(--faint); cursor: default; }
+  .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .chip .n { opacity: .7; margin-left: 4px; font-size: 12px; }
+  .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface); }
+  .seg button { border: 0; background: none; color: var(--muted); font: inherit; font-size: 13px; padding: 4px 10px; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .letters { display: flex; flex-wrap: wrap; gap: 2px; }
+  .letters button { width: 28px; height: 28px; border: 0; border-radius: 6px; background: none; color: var(--text); font: 600 13px Inter, sans-serif; cursor: pointer; }
+  .letters button:hover:not(:disabled) { background: var(--accent-soft); color: var(--accent); }
+  .letters button:disabled { color: var(--border); cursor: default; }
+  .count { color: var(--muted); font-size: 13px; margin-left: auto; }
+
+  .group-head { font: 700 13px "JetBrains Mono", monospace; color: var(--accent); margin: 28px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); scroll-margin-top: 200px; display: flex; justify-content: space-between; }
+  .group-head span { color: var(--muted); font-weight: 500; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; margin-bottom: 10px; box-shadow: var(--shadow); display: grid; grid-template-columns: 240px 1fr; gap: 6px 24px; }
+  .term { font-weight: 700; font-size: 17px; word-break: break-word; }
+  .full { color: var(--muted); font-size: 13px; margin-top: 2px; }
+  .vi { display: inline-block; margin-top: 8px; font-size: 13.5px; color: var(--vi); background: var(--vi-soft); border-radius: 6px; padding: 3px 8px; }
+  .vi b { font: 600 10.5px "JetBrains Mono", monospace; letter-spacing: .05em; margin-right: 6px; opacity: .8; }
+  .label { font: 600 10.5px "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .def { margin: 2px 0 0; }
+  .ex { margin-top: 10px; padding: 8px 12px; border-left: 3px solid var(--accent); background: var(--surface-2); border-radius: 0 8px 8px 0; font-size: 14px; }
+  .ex p { margin: 2px 0 0; }
+  .tags { grid-column: 2; display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+  .tag { font-size: 11.5px; padding: 2px 8px; border-radius: 6px; background: var(--surface-2); color: var(--muted); }
+  .tag.new { background: var(--new-soft); color: var(--new); font-weight: 600; }
+  mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1px; }
+
+  .empty { text-align: center; color: var(--muted); padding: 60px 0; }
+  footer { margin-top: 40px; color: var(--muted); font-size: 13px; text-align: center; }
+
+  @media (max-width: 640px) {
+    .card { grid-template-columns: 1fr; }
+    .tags { grid-column: 1; }
+    .search kbd { display: none; }
+    .group-head { scroll-margin-top: 300px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">A to Z Glossary</div>
+      <h1 id="title"></h1>
+      <p class="subtitle" id="subtitle"></p>
+    </div>
+    <button class="theme-btn" id="themeBtn">Dark mode</button>
+  </header>
+
+  <div class="controls">
+    <label class="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Search in English or Vietnamese" autocomplete="off">
+      <button class="clear" id="clear" aria-label="Clear search">×</button>
+      <kbd>/</kbd>
+    </label>
+    <div class="row" id="filters"></div>
+    <div class="row">
+      <div class="seg" id="groupBy">
+        <button data-g="letter" aria-pressed="true">A to Z</button>
+        <button data-g="cat" aria-pressed="false">By category</button>
+      </div>
+      <div class="letters" id="letters"></div>
+      <span class="count" id="count"></span>
+    </div>
+  </div>
+
+  <main id="list"></main>
+  <footer id="footer"></footer>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const data = TERMS.filter(t => t.term && t.definition)
+    .sort((a, b) => a.term.localeCompare(b.term, undefined, { sensitivity: "base" }));
+  let activeFilter = "all", groupBy = "letter";
+
+  $("title").textContent = SITE_TITLE;
+  $("subtitle").textContent = SITE_SUBTITLE;
+  $("footer").textContent = data.length + " terms in " + CATEGORIES.length + " categories";
+  document.title = SITE_TITLE;
+
+  // Category chips: All + each category (categories with no terms yet are greyed out)
+  const perCat = c => data.filter(t => t.category === c).length;
+  let chipHtml = `<button class="chip" data-k="all" aria-pressed="true">All<span class="n">${data.length}</span></button>`;
+  for (const c of CATEGORIES) {
+    const n = perCat(c);
+    chipHtml += `<button class="chip" data-k="${esc(c)}" aria-pressed="false" ${n ? "" : "disabled"}>${esc(c)}${n ? `<span class="n">${n}</span>` : ""}</button>`;
+  }
+  $("filters").innerHTML = chipHtml;
+  $("filters").addEventListener("click", e => {
+    const b = e.target.closest(".chip"); if (!b || b.disabled) return;
+    activeFilter = b.dataset.k;
+    $("filters").querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c === b));
+    render();
+  });
+  $("groupBy").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    groupBy = b.dataset.g;
+    $("groupBy").querySelectorAll("button").forEach(c => c.setAttribute("aria-pressed", c === b));
+    render();
+  });
+
+  function esc(s) { return String(s ?? "").replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c])); }
+  // Lowercase and strip accents so "bao mat" finds "bảo mật"
+  function norm(s) { return String(s ?? "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/đ/g, "d"); }
+  function highlight(text, words) {
+    const html = esc(text);
+    if (!words.length) return html;
+    const re = new RegExp("(" + words.map(w => esc(w).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|") + ")", "gi");
+    return html.replace(re, "<mark>$1</mark>");
+  }
+  function letterOf(t) { const c = norm(t.term.trim()[0]).toUpperCase(); return /[A-Z]/.test(c) ? c : "#"; }
+
+  function card(t, words, anchor) {
+    return `<article class="card"${anchor}>
+      <div>
+        <div class="term">${highlight(t.term, words)}</div>
+        ${t.full ? `<div class="full">${highlight(t.full, words)}</div>` : ""}
+        ${t.vi ? `<div class="vi"><b>VI</b>${highlight(t.vi, words)}</div>` : ""}
+      </div>
+      <div>
+        <div class="label">Definition</div>
+        <p class="def">${highlight(t.definition, words)}</p>
+        ${t.example ? `<div class="ex"><div class="label">Example</div><p>${highlight(t.example, words)}</p></div>` : ""}
+      </div>
+      <div class="tags">
+        ${t.category ? `<span class="tag">${esc(t.category)}</span>` : ""}
+      </div></article>`;
+  }
+
+  function render() {
+    const raw = $("q").value.trim();
+    const words = raw.toLowerCase().split(/\s+/).filter(Boolean);
+    const nwords = words.map(norm);
+    $("clear").style.display = raw ? "block" : "none";
+
+    const rows = data.filter(t => {
+      if (activeFilter !== "all" && t.category !== activeFilter) return false;
+      const hay = norm([t.term, t.full, t.vi, t.definition, t.example].join(" "));
+      return nwords.every(w => hay.includes(w));
+    });
+
+    if (words.length) {
+      const q = norm(raw);
+      const score = t => norm(t.term) === q ? 0 : norm(t.term).startsWith(q) ? 1 : norm(t.term).includes(q) ? 2 : 3;
+      rows.sort((a, b) => score(a) - score(b) || a.term.localeCompare(b.term));
+    }
+
+    $("count").textContent = `${rows.length} of ${data.length} terms`;
+
+    const byLetter = groupBy === "letter";
+    const present = new Set(rows.map(letterOf));
+    $("letters").style.display = byLetter ? "" : "none";
+    $("letters").innerHTML = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(L =>
+      `<button data-l="${L}" ${present.has(L) ? "" : "disabled"}>${L}</button>`).join("");
+
+    if (!rows.length) {
+      $("list").innerHTML = `<div class="empty">No terms match "${esc(raw)}".</div>`;
+      return;
+    }
+
+    let html = "";
+    if (byLetter) {
+      let last = "";
+      const seen = new Set();
+      for (const t of rows) {
+        const L = letterOf(t);
+        let anchor = "";
+        if (!words.length && L !== last) { html += `<div class="group-head" id="L-${L}">${L}</div>`; last = L; }
+        else if (words.length && !seen.has(L)) { anchor = ` id="L-${L}"`; seen.add(L); }
+        html += card(t, words, anchor);
+      }
+    } else {
+      for (const c of CATEGORIES) {
+        const group = rows.filter(t => t.category === c);
+        if (!group.length) continue;
+        html += `<div class="group-head">${esc(c)}<span>${group.length} terms</span></div>`;
+        html += group.map(t => card(t, words, "")).join("");
+      }
+      const noCat = rows.filter(t => !CATEGORIES.includes(t.category));
+      if (noCat.length) html += `<div class="group-head">No category set</div>` + noCat.map(t => card(t, words, "")).join("");
+    }
+    $("list").innerHTML = html;
+  }
+
+  $("letters").addEventListener("click", e => {
+    const b = e.target.closest("button[data-l]"); if (!b) return;
+    document.getElementById("L-" + b.dataset.l)?.scrollIntoView({ behavior: "smooth" });
+  });
+  $("q").addEventListener("input", render);
+  $("clear").addEventListener("click", e => { e.preventDefault(); $("q").value = ""; render(); $("q").focus(); });
+  document.addEventListener("keydown", e => {
+    if (e.key === "/" && document.activeElement !== $("q")) { e.preventDefault(); $("q").focus(); }
+    if (e.key === "Escape") { $("q").value = ""; render(); }
+  });
+
+  // Dark mode toggle (remembers the choice)
+  const root = document.documentElement;
+  const isDark = () => root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  try { const s = localStorage.getItem("logistics-theme"); if (s) root.dataset.theme = s; } catch (_) {}
+  const syncBtn = () => $("themeBtn").textContent = isDark() ? "Light mode" : "Dark mode";
+  $("themeBtn").addEventListener("click", () => {
+    root.dataset.theme = isDark() ? "light" : "dark";
+    try { localStorage.setItem("logistics-theme", root.dataset.theme); } catch (_) {}
+    syncBtn();
+  });
+  syncBtn();
+  render();
+})();
+</script>
+</body>
+</html>
